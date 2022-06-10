@@ -65,7 +65,7 @@ export default class OpenAddressHashTable {
     }
     
     // @todo - YOU MUST DEFINE THIS METHOD
-    /*removeValue(key) {   
+    removeValue(key) {   
         let foundKey = false;
         let index = this.hashCode(key);
         for (let i = 0; i < this.length; i++){
@@ -106,7 +106,7 @@ export default class OpenAddressHashTable {
         else{
             console.log("key to delete " + key + " is not found");
         }
-    }*/
+    }
 
     // @todo - YOU MUST DEFINE THIS METHOD
     /*putValue(key, item) {
