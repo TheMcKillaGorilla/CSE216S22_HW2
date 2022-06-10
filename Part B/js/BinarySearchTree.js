@@ -6,6 +6,13 @@ class Node {
         this.left = initLeft;
         this.right = initRight;
     }
+    // modified version of constructor
+    constructor(initKey, initData) {
+        this.key = initKey;
+        this.data = initData;
+        this.left = null;
+        this.right = null;
+    }
 };
 
 export default class BinarySearchTree {
@@ -36,7 +43,22 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, value) {
-
+        tempNode = new Node(key, value);
+        if (this.root === null){
+            this.root = tempNode;
+            console.log(key + ": " + value.toString() + " has been made root since tree is empty");
+            size++;
+        }
+        else{
+            putValueHelper(this.root, tempNode, key);
+            size++;
+        }
+    }
+    putValueHelper(root, nodeToInsert, key){
+        if (key === root.key){
+            console.log(root.key + ": " + root.data.toString( ) + " has been replaced with " + key + ": " + nodeToInsert.data.toString());
+            root.data = nodeToInsert.data;
+        }
     }
 
     // @todo - YOU MUST DEFINE THIS METHOD
