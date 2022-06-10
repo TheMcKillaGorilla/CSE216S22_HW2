@@ -1,11 +1,4 @@
 class Node {
-    constructor(initKey, initData, initParent, initLeft, initRight) {
-        this.key = initKey;
-        this.data = initData;
-        this.parent = initParent;
-        this.left = initLeft;
-        this.right = initRight;
-    }
     // modified version of constructor
     constructor(initKey, initData) {
         this.key = initKey;
@@ -43,21 +36,35 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, value) {
-        tempNode = new Node(key, value);
+        let tempNode = new Node(key, value);
         if (this.root === null){
             this.root = tempNode;
             console.log(key + ": " + value.toString() + " has been made root since tree is empty");
-            size++;
+            this.size++;
         }
         else{
-            putValueHelper(this.root, tempNode, key);
-            size++;
+            this.putValueHelper(this.root, tempNode, key);
+            this.size++;
         }
     }
     putValueHelper(root, nodeToInsert, key){
         if (key === root.key){
-            console.log(root.key + ": " + root.data.toString( ) + " has been replaced with " + key + ": " + nodeToInsert.data.toString());
+            console.log(root.key + ": " + root.data.toString() + " has been replaced with " + key + ": " + nodeToInsert.data.toString());
             root.data = nodeToInsert.data;
+        }
+        else if (key < root.key && root.left === null){
+            console.log(nodeToInsert.key + ": " + nodeToInsert.data.toString() + " has been added ");
+            root.left = nodeToInsert;
+        }
+        else if (key > root.key && root.right === null){
+            console.log(nodeToInsert.key + ": " + nodeToInsert.data.toString() + " has been added ");
+            root.right = nodeToInsert;
+        }
+        else if (key < root.key){
+            this.putValueHelper(root.left, nodeToInsert, key);
+        }
+        else if (key > root.key){
+            this.putValueHelper(root.right, nodeToInsert, key);
         }
     }
 
