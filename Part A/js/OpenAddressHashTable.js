@@ -109,7 +109,7 @@ export default class OpenAddressHashTable {
     }
 
     // @todo - YOU MUST DEFINE THIS METHOD
-    /*putValue(key, item) {
+    putValue(key, item) {
         let KVPtoInsert = new KeyValuePair(key, item);
         let index = this.hashCode(key);
         let replacedIndex = false;
@@ -165,7 +165,7 @@ export default class OpenAddressHashTable {
                 }
             }
         }
-    }*/
+    }
     
     toString() {
         let text = "[\n";
