@@ -64,5 +64,7 @@ hashTable.removeValue(dgKey);
 printHashTable("\nAfter Removing Bill Withers", hashTable);
 
 console.log("After creating the undergraduate:");
-let undergrad = new Undergraduate(hashTable.generateKey(), "Bob", "Bobbers", 4.0, "U4");
+let underString = hashTable.generateKey();
+let undergrad = new Undergraduate(underString, "Bob", "Bobbers", 4.0, "U4");
 console.log(undergrad.toString());
+addPersonToHashTable(undergrad, hashTable);

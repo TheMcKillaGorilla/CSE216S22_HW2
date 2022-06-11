@@ -36,7 +36,7 @@ let cwKey = tree.generateKey();
 tree.putValue(cwKey, new Student(cwKey, "Charlie", "Watts", 3.1));
 let dgKey = tree.generateKey();
 tree.putValue(dgKey, new Employee(dgKey, "David", "Gilmour", 120000));
-printBST("\nAfter Changing 3 Items", tree);
+printBST("\nAfter adding 3 Items", tree);
 
 // DEMONSTRATE GETTING VALUES FROM THE BST
 let p = tree.getValue(jlKey);
