@@ -47,12 +47,32 @@ export default class OpenAddressHashTable {
     
     // @todo - YOU MUST DEFINE THIS METHOD
     getValue(key) {
-        return null;
+             index = hashCode(key); // THIS IS THE NATURAL INDEX
+             count = 0;
+            while (count < length) {
+                const testKVP = new KeyValuePair;
+                testKVP = new hashTable[index];
+                
+                // IF IT'S nullptr, IT CAN'=T BE IN THE HASH TABLE
+                if (testKVP == nullptr) {
+                    return nullptr;
+                }
+                // IF A KVP USES THIS KEY, RETURN ITS VALUE
+                else if (testKVP.key.compare(key) == 0) {
+                    return testKVP.value;
+                }
+                index++;
+                // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
+                if (index == length)
+                    index = 0;
+                count++;
+            }
+            // IT WAS NOT IN THE FULL HASH TABLE, SO RETURN nullptr
+            return nullptr;
     }
     
     // @todo - YOU MUST DEFINE THIS METHOD
-    removeValue(key) {   
-    }
+
 
     // @todo - YOU MUST DEFINE THIS METHOD
     putValue(key, item) {
