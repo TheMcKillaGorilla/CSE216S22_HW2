@@ -135,10 +135,12 @@ export default class OpenAddressHashTable {
             }
             for (let i = 0; i < originalLength; i++){
                 if (this.hashTable[i] != null){
+                    let tempItem = new KeyValuePair(this.hashTable[i].key,this.hashTable[i].value);
                     let tempKey = this.hashTable[i].key;
-                    let tempItem = this.hashTable[i];
                     let tempIndex = this.hashCode(tempKey);
-                    for (let tempCounter = 0; tempCounter < this.length; i++){
+                    console.log(tempItem.toString() + " attempting to hash at " + (tempIndex % this.length));
+                    for (let tempCounter = 0; tempCounter < this.length; tempCounter++){
+                        // put item in new table
                         if (newTable[tempIndex % this.length] === null){
                             newTable[tempIndex % this.length] = tempItem;
                             console.log(tempItem.toString() + " rehashed at index " + (tempIndex % this.length));
@@ -146,6 +148,9 @@ export default class OpenAddressHashTable {
                         }
                         else{
                             tempIndex++;
+                           // i--;
+                            console.log("increased temp index");
+                            console.log(tempItem.toString() + " trying to be rehashed at " + (tempIndex % this.length));
                         }
                     }
                 }

@@ -29,6 +29,8 @@ addPersonToHashTable(new Person(hashTable.generateKey(), "Chuck", "Berry"), hash
 addPersonToHashTable(new Student(hashTable.generateKey(), "Mick", "Jagger", 3.5), hashTable);
 addPersonToHashTable(new Student(hashTable.generateKey(), "Jimi", "Hendrix", 3.6), hashTable);
 addPersonToHashTable(new Person(hashTable.generateKey(), "Roger", "Waters"), hashTable);
+addPersonToHashTable(new Person(hashTable.generateKey(), "Rick", "Astley", 4.0, "U4"), hashTable);
+
 
 // DEMONSTRATE MAKING KEYS AND ADDING VALUES TO THE HASH TABLE    
 let jlKey = hashTable.generateKey();
@@ -38,6 +40,10 @@ hashTable.putValue(cwKey, new Student(cwKey, "Charlie", "Watts", 3.1));
 let dgKey = hashTable.generateKey();
 hashTable.putValue(dgKey, new Employee(dgKey, "David", "Gilmour", 120000));
 printHashTable("\nAfter Adding 3 Items", hashTable);
+
+hashTable.removeValue(hashTable.generateKey());
+hashTable.removeValue(hashTable.generateKey());
+hashTable.removeValue(hashTable.generateKey());
 
 // DEMONSTRATE GETTING VALUES FROM THE HASH TABLE
 let p = hashTable.getValue(jlKey);
