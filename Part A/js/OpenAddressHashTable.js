@@ -58,17 +58,19 @@ export default class OpenAddressHashTable {
             while (count < this.length) 
             {
                 let testKVP = this.hashTable[index];
-                
                 // IF IT'S nullptr, IT CAN'T BE IN THE HASH TABLE
                 if (testKVP === null) {
                     return null;
                 }
                 // IF A KVP USES THIS KEY, RETURN ITS VALUE
-                else if (testKVP.key === this.key) 
+                else if (testKVP.key === key) 
                 {
                     return testKVP.value;
                 }
+				else
+				{
                 index++;
+				}
                 // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
                 if (index == this.length)
                     index = 0;
@@ -83,19 +85,19 @@ export default class OpenAddressHashTable {
     {
         let index = this.hashCode(key); // THIS IS THE NATURAL INDEX
         let count = 0;
-            while (count < length) {
+            while (count < this.length) {
                 let testKVP =  this.hashTable[index];
                 // IF IT'S nullptr, IT CAN'T BE IN THE HASH TABLE
                 if (testKVP === null) {
                     return;
                 }
                 // IF A KVP USES THIS KEY, REMOVE IT
-                else if (testKVP.key === this.key ) 
+                else if (testKVP.key === key ) 
                 {
                     // DELETE THE KVP (but not the value)
                     //delete testKVP;
                     // EMPTY THAT LOCATION
-                    hashTable[index] = null;
+                    this.hashTable[index] = null;
                     // DECREMENT THE SIZE
                     this.size--;
                     // AND REHASH THE TABLE
@@ -131,7 +133,7 @@ export default class OpenAddressHashTable {
                 }
                 index++;
                 // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
-                if (index == length)
+                if (index == this.length)
                     index = 0;
                 count++;
             }            
@@ -141,9 +143,9 @@ export default class OpenAddressHashTable {
     putValue(key, item) 
     {
 
-        let index = hashCode(key); // THIS IS THE NATURAL INDEX
+        let index = this.hashCode(key); // THIS IS THE NATURAL INDEX
         let count = 0;
-            while (count < length) {
+            while (count < this.length) {
                 let testKVP = this.hashTable[index];
                 // IF IT'S AVAILABLE, PUT IT HERE
                 if (testKVP == null) {
@@ -152,7 +154,7 @@ export default class OpenAddressHashTable {
                     return;
                 }
                 // IF ANOTHER KVP ALREADY USES THIS KEY, REPLACE IT
-                else if (testKVP.key === this.key ) 
+                else if (testKVP.key === key ) 
                 {
                     this.hashTable[index].value = item;
                     this.size++;
@@ -160,7 +162,7 @@ export default class OpenAddressHashTable {
                 }
                 index++;
                 // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
-                if (index == length)
+                if (index == this.length)
                     index = 0;
                 count++;
             }
@@ -169,7 +171,7 @@ export default class OpenAddressHashTable {
             // ONE AND PUT ALL THE OLD VALUES IN THE NEW ONE
             let temp = this.hashTable;
             this.length = this.length*2;            
-            this.hashTable = [length];
+            this.hashTable = [this.length];
             // FIRST CLEAR IT OUT
             for (let i = 0; i < this.length; i++) {
                 this.hashTable[i] = null;
