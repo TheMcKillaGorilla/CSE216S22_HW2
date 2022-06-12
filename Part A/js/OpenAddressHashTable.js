@@ -46,38 +46,96 @@ export default class OpenAddressHashTable {
     }
     
     // @todo - YOU MUST DEFINE THIS METHOD
-    getValue(key) {
-             index = hashCode(key); // THIS IS THE NATURAL INDEX
-             count = 0;
-            while (count < length) {
-                const testKVP = new KeyValuePair;
-                testKVP = new hashTable[index];
+    getValue(key) 
+    {
+        let index = hashCode(key); // THIS IS THE NATURAL INDEX
+        let count = 0;
+            while (count < this.length) 
+            {
+                let testKVP = this.hashTable[index];
                 
-                // IF IT'S nullptr, IT CAN'=T BE IN THE HASH TABLE
-                if (testKVP == nullptr) {
-                    return nullptr;
+                // IF IT'S nullptr, IT CAN'T BE IN THE HASH TABLE
+                if (testKVP === null) {
+                    return null;
                 }
                 // IF A KVP USES THIS KEY, RETURN ITS VALUE
-                else if (testKVP.key.compare(key) == 0) {
+                else if (testKVP.key === this.key) 
+                {
                     return testKVP.value;
+                }
+                index++;
+                // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
+                if (index == this.length)
+                    index = 0;
+                count++;
+            }
+            // IT WAS NOT IN THE FULL HASH TABLE, SO RETURN nullptr
+            return null;
+    }
+    
+    // @todo - YOU MUST DEFINE THIS METHOD
+    removeValue(key) 
+    {
+        let index = hashCode(key); // THIS IS THE NATURAL INDEX
+        let count = 0;
+            while (count < length) {
+                let testKVP =  this.hashTable[index];
+                // IF IT'S nullptr, IT CAN'T BE IN THE HASH TABLE
+                if (testKVP === null) {
+                    return;
+                }
+                // IF A KVP USES THIS KEY, REMOVE IT
+                else if (testKVP.key === this.key ) 
+                {
+                    // DELETE THE KVP (but not the value)
+                    //delete testKVP;
+                    
+                    // EMPTY THAT LOCATION
+                    hashTable[index] = null;
+                    
+                    // DECREMENT THE SIZE
+                    this.size--;
+                    // AND REHASH THE TABLE
+                    let temp = new KeyValuePair [length];
+                    let counter = 0;
+                    // FIRST GET ALL THE EXISTING VALUES AND PUT THEM
+                    // WHERE WE CAN GET THEM WHILE EMPTYING THE HASH TABLE
+                    for (let i = 0; i < this.length; i++) 
+                    {
+                        let reHashTemp =  hashTable[i];
+                        if (reHashTemp != null) 
+                        {
+                            temp[counter] = reHashTemp;
+                            counter++;
+                        }
+                        this.hashTable[i] = null;
+                    }
+                    // RESET THE size
+                    this.size = 0;
+                    // AND NOW RE-PUT ALL THE VALUES
+                    for (let i = 0; i < counter; i++) {
+                        let reHashTemp  = temp[i];
+                        let keyToRehash = reHashTemp.key;
+                        let valueToRehash = reHashTemp.value;
+                        putValue(keyToRehash, valueToRehash);
+                        
+                        // DELETE THE OLD KeyValuePair OBJECT SINCE putValue ADDS A NEW ONE
+                        //delete item;
+                    }
+                    // AND REMEMBER TO DELETE OUR TEMP ARRAY
+                    //delete temp;
+                    return;
                 }
                 index++;
                 // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
                 if (index == length)
                     index = 0;
                 count++;
-            }
-            // IT WAS NOT IN THE FULL HASH TABLE, SO RETURN nullptr
-            return nullptr;
+            }            
     }
-    
-    // @todo - YOU MUST DEFINE THIS METHOD
-
 
     // @todo - YOU MUST DEFINE THIS METHOD
-    putValue(key, item) {
-
-    }
+   
     
     toString() {
         let text = "[\n";
