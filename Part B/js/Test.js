@@ -21,13 +21,13 @@ function addPersonToBST(person, tree) {
 let tree = new BinarySearchTree(KEY_LENGTH);
 
 // DEMONSTRATE ADDING VALUES TO THE BST, WHICH INCLUDES THE NEED TO MAKE THE BST BIGGER
-/*addPersonToBST(new Student(tree.generateKey(), "George", "Harrison", 4.0), tree);
+addPersonToBST(new Student(tree.generateKey(), "George", "Harrison", 4.0), tree);
 addPersonToBST(new Employee(tree.generateKey(), "Paul", "McCartney", 80000), tree);
 addPersonToBST(new Employee(tree.generateKey(), "Ringo", "Starr", 40000), tree);
 addPersonToBST(new Person(tree.generateKey(), "Chuck", "Berry"), tree);
 addPersonToBST(new Student(tree.generateKey(), "Mick", "Jagger", 3.5), tree);
 addPersonToBST(new Student(tree.generateKey(), "Jimi", "Hendrix", 3.6), tree);
-addPersonToBST(new Person(tree.generateKey(), "Roger", "Waters"), tree);*/
+addPersonToBST(new Person(tree.generateKey(), "Roger", "Waters"), tree);
 
 // DEMONSTRATE MAKING KEYS AND ADDING VALUES TO THE BST    
 let jlKey = tree.generateKey();
