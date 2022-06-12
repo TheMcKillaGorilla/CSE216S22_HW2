@@ -53,7 +53,7 @@ export default class OpenAddressHashTable {
     // @todo - YOU MUST DEFINE THIS METHOD
     getValue(key) 
     {
-        let index = hashCode(key); // THIS IS THE NATURAL INDEX
+        let index = this.hashCode(key); // THIS IS THE NATURAL INDEX
         let count = 0;
             while (count < this.length) 
             {
@@ -81,7 +81,7 @@ export default class OpenAddressHashTable {
     // @todo - YOU MUST DEFINE THIS METHOD
     removeValue(key) 
     {
-        let index = hashCode(key); // THIS IS THE NATURAL INDEX
+        let index = this.hashCode(key); // THIS IS THE NATURAL INDEX
         let count = 0;
             while (count < length) {
                 let testKVP =  this.hashTable[index];
@@ -94,20 +94,18 @@ export default class OpenAddressHashTable {
                 {
                     // DELETE THE KVP (but not the value)
                     //delete testKVP;
-                    
                     // EMPTY THAT LOCATION
                     hashTable[index] = null;
-                    
                     // DECREMENT THE SIZE
                     this.size--;
                     // AND REHASH THE TABLE
-                    let temp = new KeyValuePair [length];
+                    let temp = [this.length];
                     let counter = 0;
                     // FIRST GET ALL THE EXISTING VALUES AND PUT THEM
                     // WHERE WE CAN GET THEM WHILE EMPTYING THE HASH TABLE
                     for (let i = 0; i < this.length; i++) 
                     {
-                        let reHashTemp =  hashTable[i];
+                        let reHashTemp =  this.hashTable[i];
                         if (reHashTemp != null) 
                         {
                             temp[counter] = reHashTemp;
