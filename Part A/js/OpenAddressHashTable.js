@@ -15,6 +15,11 @@ export default class OpenAddressHashTable {
         this.size = 0;
         this.keyLength = initKeyLength;
         this.hashTable = [];
+        this.hashTable = [initLength];
+        for(let i =0;i<initLength;i++)
+        {
+            this.hashtable[i]=null;
+        }
     }
 
     hashCode(key) {
