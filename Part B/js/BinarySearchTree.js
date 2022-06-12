@@ -99,14 +99,12 @@ export default class BinarySearchTree {
         else if (this.root.key === key && this.root.left === null){
             console.log(key + ": " + this.root.data.toString() + " and right root is promoted");
             this.root = this.root.right;
+            this.root.setParent(null);
         }
         else if (this.root.key === key && this.root.right === null){
             console.log(key + ": " + this.root.data.toString() + " and left root is promoted");
             this.root = this.root.left;
-        }
-        else if (this.root.key === key && this.root.right === null && this.root.left === null){
-            console.log(key + ": " + this.root.data.toString() + " is the last node in the tree and deleted");
-            this.root = null;
+            this.root.setParent(null);
         }
         else if (this.root.key === key && this.root.right != null && this.root.left != null){
             let childToReplace = this.replacerHelper(this.root.right);
@@ -136,9 +134,11 @@ export default class BinarySearchTree {
                 return null;
             }
             else if (root.right === null) {
+                root.left.setParent(root);
                 return root.left;
             }
             else if (root.left === null) {
+                root.right.setParent(root);
                 return root.right;
             }
             let childToReplace = this.replacerHelper(root.right);
