@@ -114,6 +114,12 @@ export default class BinarySearchTree {
             console.log(key + ": " + this.root.data.toString() + " is the last node in the tree and deleted");
             this.root = null;
         }
+        else if (this.root.key === key && this.root.right != null && this.root.left != null){
+            let childToReplace = this.replacerHelper(this.root.right);
+            this.root.data = childToReplace.data;
+            this.root.key = childToReplace.key;
+            this.root.right = this.removeValueHelper(this.root.right, childToReplace.key);
+        }
         else{
             this.removeValueHelper(this.root, key);
         }
@@ -141,7 +147,7 @@ export default class BinarySearchTree {
             else if (root.left === null) {
                 return root.right;
             }
-            childToReplace = this.replacerHelper(root.right);
+            let childToReplace = this.replacerHelper(root.right);
             root.data = childToReplace.data;
             root.key = childToReplace.key;
             root.right = this.removeValueHelper(root.right, childToReplace.key);
@@ -150,7 +156,7 @@ export default class BinarySearchTree {
     }
         
     replacerHelper(root) {
-        temp = root;
+        let temp = root;
         while (temp && temp.left != null) {
             temp = temp.left;
         }

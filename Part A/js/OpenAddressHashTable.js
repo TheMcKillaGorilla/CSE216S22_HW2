@@ -148,7 +148,6 @@ export default class OpenAddressHashTable {
                         }
                         else{
                             tempIndex++;
-                           // i--;
                             console.log("increased temp index");
                             console.log(tempItem.toString() + " trying to be rehashed at " + (tempIndex % this.length));
                         }
