@@ -1,5 +1,5 @@
 import OpenAddressHashTable from "./OpenAddressHashTable.js";
-import { Person, Employee, Student } from "./People.js";
+import { Person, Employee, Student, Undergraduate } from "./People.js";
 
 const NUM_BINS = 5;
 const KEY_LENGTH = 8;
@@ -22,21 +22,21 @@ function addPersonToHashTable(person, hashTable) {
 let hashTable = new OpenAddressHashTable(NUM_BINS, KEY_LENGTH);
 
 // DEMONSTRATE ADDING VALUES TO THE HASH TABLE, WHICH INCLUDES THE NEED TO MAKE THE HASH TABLE BIGGER
-addPersonToHashTable(new Student(hashTable.generateKey(), "George", "Harrison", 4.0), hashTable);
-addPersonToHashTable(new Employee(hashTable.generateKey(), "Paul", "McCartney", 80000), hashTable);
-addPersonToHashTable(new Employee(hashTable.generateKey(), "Ringo", "Starr", 40000), hashTable);
-addPersonToHashTable(new Person(hashTable.generateKey(), "Chuck", "Berry"), hashTable);
-addPersonToHashTable(new Student(hashTable.generateKey(), "Mick", "Jagger", 3.5), hashTable);
-addPersonToHashTable(new Student(hashTable.generateKey(), "Jimi", "Hendrix", 3.6), hashTable);
-addPersonToHashTable(new Person(hashTable.generateKey(), "Roger", "Waters"), hashTable);
+addPersonToHashTable(new Student(hashTable.generateKey(), "Harvard", "Crimson", 4.0), hashTable);
+addPersonToHashTable(new Employee(hashTable.generateKey(), "Magic", "Mike", 80000), hashTable);
+addPersonToHashTable(new Employee(hashTable.generateKey(), "Power", "Rangers", 40000), hashTable);
+addPersonToHashTable(new Person(hashTable.generateKey(), "Digimon", "Digital"), hashTable);
+addPersonToHashTable(new Undergraduate(hashTable.generateKey(), "SBU", "SeaWolf",4.0, "U4"), hashTable);
+addPersonToHashTable(new Undergraduate(hashTable.generateKey(), "Bing", "BearCar",3.7, "U3"), hashTable);
+addPersonToHashTable(new Undergraduate(hashTable.generateKey(), "Buffalo", "Bison",3.5, "U2"), hashTable);
 
 // DEMONSTRATE MAKING KEYS AND ADDING VALUES TO THE HASH TABLE    
 let jlKey = hashTable.generateKey();
-hashTable.putValue(jlKey, new Student(jlKey, "John", "Lennon", 3.8));
+hashTable.putValue(jlKey, new Student(jlKey, "Tony", "Stark", 3.8));
 let cwKey = hashTable.generateKey();
-hashTable.putValue(cwKey, new Student(cwKey, "Charlie", "Watts", 3.1));
+hashTable.putValue(cwKey, new Student(cwKey, "Steve", "Rogers", 9.1));
 let dgKey = hashTable.generateKey();
-hashTable.putValue(dgKey, new Employee(dgKey, "David", "Gilmour", 120000));
+hashTable.putValue(dgKey, new Undergraduate(dgKey, "Black", "Panther", 4.3),"U3");
 printHashTable("\nAfter Changing 3 Items", hashTable);
 
 // DEMONSTRATE GETTING VALUES FROM THE HASH TABLE
@@ -48,17 +48,17 @@ p = hashTable.getValue(dgKey);
 console.log("\nget " + dgKey + ": " + p.toString() + "\n");
 
 // NOW LET'S TRY REPLACING THE DATA IN THE ABOVE THREE
-hashTable.putValue(jlKey, new Student(jlKey, "Otis", "Redding", 3.5));
-hashTable.putValue(cwKey, new Student(cwKey, "Keith", "Richards", 3.1));
-hashTable.putValue(dgKey, new Student(dgKey, "Bill", "Withers", 3.4));
+hashTable.putValue(jlKey, new Student(jlKey, "Captian " , "Marvel", 3.5));
+hashTable.putValue(cwKey, new Student(cwKey, "Wanda", "Maximoff", 3.89));
+hashTable.putValue(dgKey, new Student(dgKey, "War", "Machine", 3.4));
 printHashTable("\nAfter Changing 3 Items", hashTable);
 
 // AND DEMONSTRATE REMOVING ITEMS FROM THE BST
 hashTable.removeValue(jlKey);
-printHashTable("\nAfter Removing Otis Redding", hashTable);
+printHashTable("\nAfter Removing Captian Marvel", hashTable);
 
 hashTable.removeValue(cwKey);
-printHashTable("\nAfter Removing Keith Richards", hashTable);
+printHashTable("\nAfter Removing Wanda Maximoff", hashTable);
 
 hashTable.removeValue(dgKey);
-printHashTable("\nAfter Removing Bill Withers", hashTable);
+printHashTable("\nAfter Removing War Machine", hashTable);
