@@ -109,7 +109,101 @@ export default class BinarySearchTree {
 
     // @todo - YOU MUST DEFINE THIS METHOD
     removeValue(key) {
-
+        let traveller = this.root;
+        let found = false;
+        while (!found) {
+            //cout << "key: " << key << ", traveller->key: " << traveller->key << endl;
+            if (key.localeCompare(traveller.key) === 0) {
+                // GET THE LARGEST ON THE LEFT, IS THERE IS A LEFT
+                if (traveller.left != null) {
+                    // FIND THE LARGEST
+                    let largest = traveller.left;
+                    while (largest.right != null) {
+                        largest = largest.right;
+                    }
+                    // AT THIS POINT largest MUST
+                    // BE THE LARGEST ON THE LEFT
+                    // BUT IT MIGHT BE ITS PARENT LEFT
+                    // OR RIGHT NODE
+                    
+                    // FIRST MOVE THE key AND THE data
+                    traveller.key = largest.key;
+                    traveller.data = largest.data;
+                    
+                    // THEN FIX THE TREE, NOTE largest HAS NO RIGHT
+                    // IF IT'S A LEAF WE DON'T CARE ABOUT ITS CHILDREN
+                    // SO WE CAN JUST KEEP ITS LEFT
+                    if (largest === largest.parent.left) {
+                        largest.parent.left = largest.left;
+                    }
+                    else {
+                        largest.parent.right = largest.left;
+                    }
+                    //delete largest;
+                }
+                // OR THE SMALLEST ON THE RIGHT
+                else if (traveller.right != null) {
+                    // FIND THE SMALLEST
+                    let smallest = traveller.right;
+                    while (smallest.left != null) {
+                        smallest = smallest.left;
+                    }
+                    // AT THIS POINT Smallest MUST
+                    // BE THE SMALLEST ON THE RIGHT
+                    // BUT IT MIGHT BE ITS PARENT RIGHT
+                    // OR LEFT NODE
+                    
+                    // FIRST MOVE THE key AND THE data
+                    traveller.key = smallest.key;
+                    traveller.data = smallest.data;
+                    
+                    // THEN FIX THE TREE
+                    if (smallest === smallest.parent.right) {
+                        smallest.parent.right = smallest.right;
+                    }
+                    else {
+                        smallest.parent.left = smallest.right;
+                    }
+                    //delete smallest;
+                }
+                // IT'S A LEAF
+                else {
+                    // IT MIGHT BE THE ROOT (i.e. THE ONLY NODE)
+                    if (traveller === this.root) {
+                        //delete root;
+                        root = null;
+                    }
+                    // IT MIGHT BE ON ITS PARENT'S LEFT
+                    else if (traveller === traveller.parent.left) {
+                        traveller.parent.left = null;
+                        //delete traveller;
+                    }
+                    // OR ITS RIGHT
+                    else {
+                        traveller.parent.right = null;
+                        //delete traveller;
+                    }
+                }
+                this.size--;
+                found = true;
+            }
+            else if (key.localeCompare(traveller.key) < 0) {
+                if (traveller.left == null) {
+                    return;
+                }
+                else {
+                    traveller = traveller.left;
+                }
+            }
+            else {
+                if (traveller.right === null) {
+                    return;
+                }
+                else {
+                    traveller = traveller.right;
+                }
+            }
+        }
     }
 
     toStringRecursively(traveller, level) {
@@ -128,4 +222,6 @@ export default class BinarySearchTree {
     toString() {
         return this.toStringRecursively(this.root, 0);
     }
+    
 }
+
