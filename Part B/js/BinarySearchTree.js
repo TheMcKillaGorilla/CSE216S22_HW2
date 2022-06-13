@@ -34,9 +34,43 @@ export default class BinarySearchTree {
         return key;
     }
 
+    putValueRecursively( key, value,  testNode) {
+        // DOES IT GO ON THE LEFT?
+        if (key.localeCompare(testNode.key) < 0) {
+            if (testNode.left === null) {
+                testNode.left = new Node(key, value, testNode, null, null);
+                this.size++;
+                return;
+            }
+            else {
+                this.putValueRecursively(key, value, testNode.left);
+            }
+        }
+        else if (key.localeCompare(testNode.key) === 0) {
+            testNode.data = value;
+            return;
+        }
+        else {
+            if (testNode.right == null) {
+                testNode.right = new Node(key, value, testNode, null, null);
+                this.size++;
+                return;
+            }
+            else {
+                this.putValueRecursively(key, value, testNode.right);
+            }
+        }
+    }
     // @todo - YOU MUST DEFINE THIS METHOD
-    putValue(key, value) {
-
+    putValue( key, value) {
+        // IF IT'S THE FIRST ONE MAKE IT THE ROOT
+        if (this.root === null) {
+            this.root = new Node(key, value, null, null);
+            this.size++;
+            return;
+        }
+        // ADD IT TO THE EXISTING TREE
+        this.putValueRecursively(key, value, this.root);
     }
 
     // @todo - YOU MUST DEFINE THIS METHOD
