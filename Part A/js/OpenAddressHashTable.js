@@ -80,45 +80,43 @@ export default class OpenAddressHashTable {
     removeValue(key) {   
         let index = this.hashCode(key); // THIS IS THE NATURAL INDEX
         let count = 0;
-            while (count < length) {
-                let testKVP = hashTable[index];
+            while (count < this.length) {
+                let testKVP = this.hashTable[index];
                 // IF IT'S nullptr, IT CAN'T BE IN THE HASH TABLE
-                if (testKVP == null) {
+                if (testKVP === null) {
                     return;
                 }
                 // IF A KVP USES THIS KEY, REMOVE IT
                 else if (testKVP.key.localeCompare(key) === 0) {
                     // DELETE THE KVP (but not the value)
                     //delete testKVP;
-                    
                     // EMPTY THAT LOCATION
-                    hashTable[index] = null;
-                    
+                    this.hashTable[index] = null;
                     // DECREMENT THE SIZE
                     this.size--;
-                    
                     // AND REHASH THE TABLE
-                    let temp = [length];
+                    let temp = [this.length];
                     let counter = 0;
                     // FIRST GET ALL THE EXISTING VALUES AND PUT THEM
                     // WHERE WE CAN GET THEM WHILE EMPTYING THE HASH TABLE
-                    for (let i = 0; i < length; i++) {
-                        let item = hashTable[i];
-                        if (item != null) {
+                    for (let i = 0; i < this.length; i++) {
+                        let item = this.hashTable[i];
+
+                        if (item !== null) 
+                        {
                             temp[counter] = item;
                             counter++;
                         }
-                        hashTable[i] = null;
+                        this.hashTable[i] = null;
                     }
                     // RESET THE size
-                    size = 0;
+                    this.size = 0;
                     // AND NOW RE-PUT ALL THE VALUES
                     for (let i = 0; i < counter; i++) {
                         let item = temp[i];
                         let keyToRehash = item.key;
                         let valueToRehash = item.value;
                         this.putValue(keyToRehash, valueToRehash);
-                        
                         // DELETE THE OLD KeyValuePair OBJECT SINCE putValue ADDS A NEW ONE
                         //delete item;
                     }
@@ -129,7 +127,9 @@ export default class OpenAddressHashTable {
                 index++;
                 // WE MAY NEED TO RESET index TO LOOK IN THE FRONT OF THE HASH TABLE
                 if (index === this.length)
+                {
                     index = 0;
+                }
                 count++;
             }      
 
