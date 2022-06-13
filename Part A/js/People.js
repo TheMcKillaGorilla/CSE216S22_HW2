@@ -31,5 +31,20 @@ class Student extends Person {
         return super.toString() + " (" + this.gpa.toFixed(1) + " GPA)";
     }
 }
+class Undergraduate extends  Student
+{
+    constructor(initKey, initFirstName, initLastName, initGPA, standing) {
+        super(initKey, initFirstName, initLastName,initGPA);
+        this.standing = standing;
+    }
+    
 
-export {Person, Employee, Student};
+            
+     toString()
+            {
+                return super.toString()+ ", (" + this.standing + " Standing)";
+            }
+            
+};
+
+export {Person, Employee, Student,Undergraduate};
