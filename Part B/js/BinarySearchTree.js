@@ -36,6 +36,10 @@ export default class BinarySearchTree {
 
     putValueRecursively( key, value,  testNode) {
         // DOES IT GO ON THE LEFT?
+        //first compare both strings, only one I found to work was localeCompare()
+        //that function compares when the string occurs so if the key value were to be occuring before
+        //testNode.key then we get a negative value
+
         if (key.localeCompare(testNode.key) < 0) {
             if (testNode.left === null) {
                 testNode.left = new Node(key, value, testNode, null, null);
@@ -113,6 +117,10 @@ export default class BinarySearchTree {
         let found = false;
         while (!found) {
             //cout << "key: " << key << ", traveller->key: " << traveller->key << endl;
+        //first compare both strings, only one I found to work was localeCompare()
+        //that function compares when the string occurs so if the key value were to be occuring before
+        //testNode.key then we get a negative value
+
             if (key.localeCompare(traveller.key) === 0) {
                 // GET THE LARGEST ON THE LEFT, IS THERE IS A LEFT
                 if (traveller.left != null) {
