@@ -74,11 +74,11 @@ export default class BinarySearchTree {
         return this.getValueHelper(this.root, key);
     }
     getValueHelper(root, key) {
-        if (root == null) {
-            console.log(root.data.toString() + " does not exist in tree ");
+        if (root === null) {
+            console.log(key + " does not exist in tree ");
             return null;
         }
-        else if (root.key == key) {
+        else if (root.key === key) {
             console.log(root.key + " " + root.data.toString() + " has been found ");
             return root.data;
         }
@@ -120,7 +120,7 @@ export default class BinarySearchTree {
     // set promoted nodes left and right to roots left and right
     removeValueHelper(root, key) {
         if (root === null) {
-            console.log(root.key + ": " + root.data.toString() + " to remove does not exist in tree ");
+            console.log(key + " to remove does not exist in tree ");
             return null;
         }
         else if (key < root.key) {

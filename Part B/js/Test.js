@@ -50,6 +50,7 @@ console.log("\nget " + dgKey + ": " + p.toString() + "\n");
 tree.putValue(jlKey, new Student(jlKey, "Otis", "Redding", 3.5));
 tree.putValue(cwKey, new Student(cwKey, "Keith", "Richards", 3.1));
 tree.putValue(dgKey, new Student(dgKey, "Bill", "Withers", 3.4));
+
 printBST("\nAfter Changing 3 Items", tree);
 
 // AND DEMONSTRATE REMOVING ITEMS FROM THE BST
@@ -61,3 +62,7 @@ printBST("\nAfter Removing Keith Richards", tree);
 
 tree.removeValue(dgKey);
 printBST("\nAfter Removing Bill Withers", tree);
+
+tree.getValue(dgKey);
+tree.removeValue(jlKey);
+tree.getValue(jlKey);
